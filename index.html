@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="row mb-4 mt-4">
+      <div class="col">
+        <h1 class="text-center">Weight converter</h1>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col">
+        <form class="form-inline justify-content-center" id="form">
+          <select class="custom-select mr-2" id="option">
+            <option value="lbs">lbs</option>
+            <option value="kg">kg</option>
+            <option value="st">st</option>
+          </select>
+          <input type="text" class="form-control" placeholder="Enter pounds..." id="input">
+        </form>
+      </div>
+    </div>
+    <div class="row" id="cards">
+      <div class="offset-md-3 col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Kilograms:</h4>
+            <div class="card-text">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Stone:</h4>
+            <div class="card-text">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

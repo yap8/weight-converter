@@ -1,6 +1,7 @@
 const form = document.querySelector('#form')
 const formOption = document.querySelector('#option')
 const formInput = document.querySelector('#input')
+
 const cards = document.querySelectorAll('#cards .card')
 
 const handleInput = () => {
@@ -54,14 +55,14 @@ const outputResult = (result) => {
   Array.from(cards).forEach((card, i) => {
     const cardTitle = card.querySelector('.card-title')
     const cardText = card.querySelector('.card-text')
-
+    
     cardTitle.textContent = result[i].title + ':'
     cardText.textContent = result[i].value
   })
 }
 
 form.addEventListener('submit', (e) => e.preventDefault()) 
-
 formInput.addEventListener('input', handleInput)
-
 formOption.addEventListener('change', handleInput)
+
+handleInput()

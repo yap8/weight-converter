@@ -1,0 +1,36 @@
+.form {
+  display: flex;
+  justify-content: space-between;
+  &__select {
+    padding: 4px;
+    padding-left: 8px;
+    font-size: 32px;
+    margin-right: 16px;
+    border: 1px solid #a3a3a3;
+    border-radius: 3px;
+    &:focus {
+      outline: 0;
+      border-color: #1DA3F6;
+      box-shadow: 0 0 0 2px #1DA3F6;
+    }
+    @media (max-width: 768px) {
+      font-size: 24px;
+    }
+  }
+  &__input {
+    padding: 4px;
+    padding-left: 8px;
+    font-size: 32px;
+    width: 100%;
+    border: 1px solid #a3a3a3;
+    border-radius: 3px;
+    &:focus {
+      outline: 0;
+      border-color: #1DA3F6;
+      box-shadow: 0 0 0 2px #1DA3F6;
+    }
+    @media (max-width: 768px) {
+      font-size: 24px;
+    }
+  }
+}

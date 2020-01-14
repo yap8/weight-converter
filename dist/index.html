@@ -5,47 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Weight Converter</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
-  <div class="container">
-    <div class="row mb-4 mt-4">
-      <div class="col">
-        <h1 class="text-center">Weight Converter</h1>
-      </div>
+  <!-- header -->
+  <header class="header">
+    <div class="header__inner">
+      <h1 class="header__title">Weight converter</h1>
     </div>
-    <div class="row mb-4">
-      <div class="col">
-        <form class="form-inline justify-content-center" id="form">
-          <select class="custom-select mr-2" id="option">
-            <option value="lbs">lbs</option>
-            <option value="kg">kg</option>
-            <option value="st">st</option>
-          </select>
-          <input type="text" class="form-control" placeholder="Enter pounds..." id="input">
-        </form>
-      </div>
+  </header>
+
+  <!-- form-section -->
+  <section class="form-section">
+    <div class="form-section__inner">
+      <!-- form -->
+      <form class="form" id="form">
+        <select class="form__select" id="option">
+          <option value="lbs">lbs</option>
+          <option value="kg">kg</option>
+          <option value="st">st</option>
+        </select>
+        <input type="text" class="form__input" placeholder="Enter pounds..." id="input">
+      </form>
     </div>
-    <div class="row" id="cards">
-      <div class="offset-md-3 col-md-3">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title"></h4>
-            <div class="card-text"></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title"></h4>
-            <div class="card-text"></div>
-          </div>
-        </div>
-      </div>
+  </section>
+
+  <!-- items-section -->
+  <section class="items-section">
+    <div class="items-section__inner">
+      <!-- items -->
+      <ul class="items">
+        <li class="items__item">
+          <h4 class="items__item-title">Kilograms:</h4>
+          <input type="text" class="items__item-result" value="0" readonly>
+        </li>
+        <li class="items__item">
+          <h4 class="items__item-title">Stone:</h4>
+          <input type="text" class="items__item-result" value="0" readonly>
+        </li>
+      </ul>
     </div>
-  </div>
+  </section>
 
   <script src="js/script.js"></script>
 

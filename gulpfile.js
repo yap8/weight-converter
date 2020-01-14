@@ -33,7 +33,6 @@ const css = () =>
 
 const js = () =>
 	gulp.src('src/js/**/*.js')
-		.pipe(gulp.dest('src/js'))
 		.pipe(browserSync.stream())
 
 const watch = () => {

@@ -2,7 +2,7 @@ const form = document.querySelector('#form')
 const formOption = document.querySelector('#option')
 const formInput = document.querySelector('#input')
 
-const cards = document.querySelectorAll('#cards .card')
+const items = document.querySelector('#items')
 
 const handleInput = () => {
   const option = formOption.value
@@ -47,17 +47,17 @@ const handleInput = () => {
       }
     ]
   }
-  
+
   outputResult(result)
 }
 
 const outputResult = (result) => {
-  Array.from(cards).forEach((card, i) => {
-    const cardTitle = card.querySelector('.card-title')
-    const cardText = card.querySelector('.card-text')
-    
-    cardTitle.textContent = result[i].title + ':'
-    cardText.textContent = result[i].value
+  Array.from(items.children).forEach((item, i) => {
+    const itemTitle = item.querySelector('.items__item-title')
+    const itemResult = item.querySelector('.items__item-result')
+
+    itemTitle.textContent = result[i].title + ':'
+    itemResult.value = result[i].value
   })
 }
 

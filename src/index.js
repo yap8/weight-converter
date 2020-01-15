@@ -1,3 +1,5 @@
+import './styles/main.scss'
+
 const form = document.querySelector('#form')
 const formOption = document.querySelector('#option')
 const formInput = document.querySelector('#input')

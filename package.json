@@ -2,27 +2,29 @@
   "name": "weight-converter",
   "version": "1.0.0",
   "description": "simple weight converter",
+  "main": "index.js",
   "scripts": {
-    "start": "gulp",
-    "build": "gulp build",
-    "deploy": "gh-pages -d dist"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server"
   },
+  "keywords": [],
   "author": "Arseny Nebozhenko",
-  "homepage": "https://arsenyNebozhenko.io/weight-converter",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
-    "autoprefixer": "^9.7.1",
-    "browser-sync": "^2.26.5",
-    "cssnano": "^4.1.10",
-    "del": "^5.0.0",
-    "gh-pages": "^2.1.1",
-    "gulp": "^4.0.2",
-    "gulp-babel": "^8.0.0",
-    "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.0.2",
-    "gulp-uglify": "^3.0.2"
-  },
-  "dependencies": {}
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.2",
+    "file-loader": "^5.0.2",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.1.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
 }

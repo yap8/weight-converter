@@ -12,4 +12,5 @@ Prototype
 * Implement .js patterns
 * Improve .js logic
 * Split .js files into modules
+* Re-write everything using typescript
 

@@ -6,7 +6,7 @@ Prototype
 ## Todo 
 * ~~Improve file structure~~
 * ~~Remove bootstrap and add custom styles~~
-* ~~Transition from gulp to webpack
+* ~~Transition from gulp to webpack~~
 * Add validation
 * Add conditional rendering
 * Add more units

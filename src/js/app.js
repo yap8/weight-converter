@@ -7,11 +7,11 @@ const getKilos = (option, input) => {
   if (option === 'kg') {
     return input
   } else if (option === 'lbs') {
-    return input * 0.45
+    return input * .45
   } else if (option === 'st') {
     return input * 6.35
   } else if (option === 'oz') {
-    return input * 0.0283495
+    return input * .0283495
   }
 }
 
@@ -38,13 +38,13 @@ const getResult = (option, input) => {
   if (option === 'kg') {
     return [
       { title: 'Pounds', value: input * 2.20462 }, 
-      { title: 'Stones', value: input * 0.157473 },
+      { title: 'Stones', value: input * .157473 },
       { title: 'Ounces', value: input * 35.274 },
     ]
   } else if (option === 'lbs') {
     return [
       { title: 'Kilograms', value: input },
-      { title: 'Stones', value: input * 0.157473 },
+      { title: 'Stones', value: input * .157473 },
       { title: 'Ounces', value: input * 35.274 },
     ]
   } else if (option === 'st') {
@@ -57,7 +57,7 @@ const getResult = (option, input) => {
     return [
       { title: 'Kilograms', value: input },
       { title: 'Pounds', value: input * 2.20462 },
-      { title: 'Stones', value: input * 0.157473 },
+      { title: 'Stones', value: input * .157473 },
     ]
   }
 }

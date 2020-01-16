@@ -53,7 +53,7 @@ const getResult = (option, input) => {
   }
 }
 
-const outputResult = (result) => {
+const renderResult = (result) => {
   Array.from(items.children).forEach((item, i) => {
     const itemTitle = item.querySelector('.items__item-title')
     const itemResult = item.querySelector('.items__item-result')
@@ -70,7 +70,7 @@ const handleInput = () => {
 
   toggleDisplayItems(input)
   shortenValues(result)
-  outputResult(result)
+  renderResult(result)
 }
 
 form.addEventListener('submit', (e) => e.preventDefault()) 

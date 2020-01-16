@@ -39,15 +39,11 @@ const getResult = (option, input) => {
       { title: 'Stones', value: input * 0.16 }
     ]
   } else if (option === 'lbs') {
-    formInput.placeholder = 'Enter pounds...'
-    
     return [
       { title: 'Kilograms', value: input },
       { title: 'Stones', value: input * 0.16 }
     ]
   } else if (option === 'st') {
-    formInput.placeholder = 'Enter stones...'
-    
     return [
       { title: 'Kilograms', value: input },
       { title: 'Pounds', value: input * 2.2 }
@@ -81,6 +77,18 @@ const handleInput = () => {
   }
 }
 
+const handleChange = (e) => {
+  if (e.target.value === 'kg') {
+    formInput.placeholder = 'Enter kilograms...'
+  } else if (e.target.value === 'lbs') {
+    formInput.placeholder = 'Enter pounds...'
+  } else if (e.target.value === 'st') {
+    formInput.placeholder = 'Enter stones...'
+  }
+
+  handleInput()
+}
+
 form.addEventListener('submit', (e) => e.preventDefault()) 
 formInput.addEventListener('input', handleInput)
-formOption.addEventListener('change', handleInput)
+formOption.addEventListener('change', handleChange)

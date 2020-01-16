@@ -7,7 +7,7 @@ Prototype
 * ~~Improve file structure~~
 * ~~Remove bootstrap and add custom styles~~
 * ~~Transition from gulp to webpack~~
-* Add footer
+* ~~Add footer~~
 * Add validation
 * Add conditional rendering
 * Add more units

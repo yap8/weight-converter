@@ -6,12 +6,12 @@
     padding-left: 8px;
     font-size: 32px;
     margin-right: 16px;
-    border: 1px solid #a3a3a3;
+    border: 1px solid $color-1;
     border-radius: 3px;
     &:focus {
       outline: 0;
-      border-color: #1DA3F6;
-      box-shadow: 0 0 0 2px #1DA3F6;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 2px $color-primary;
     }
     @media (max-width: 768px) {
       font-size: 24px;
@@ -22,20 +22,20 @@
     padding-left: 8px;
     font-size: 32px;
     width: 100%;
-    border: 1px solid #a3a3a3;
+    border: 1px solid $color-1;
     border-radius: 3px;
     &:focus {
       outline: 0;
-      border-color: #1DA3F6;
-      box-shadow: 0 0 0 2px #1DA3F6;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 2px $color-primary;
     }
     &--message--danger {
-      border-color: #FF0000;
-      box-shadow: 0 0 0 2px #FF0000;
-      color: #FF0000;
+      border-color: $color-danger;
+      box-shadow: 0 0 0 2px $color-danger;
+      color: $color-danger;
       &:focus {
-        border-color: #FF0000;
-        box-shadow: 0 0 0 2px #FF0000;
+        border-color: $color-danger;
+        box-shadow: 0 0 0 2px $color-danger;
       }
     }
     @media (max-width: 768px) {

@@ -13,12 +13,12 @@
   }
   &__made-by-link {
     margin-left: -3px;
-    color: #1DA3F6;
+    color: $color-primary;
     text-decoration: none;
     padding: 6px;
     border-radius: 3px;
     &:focus {
-      box-shadow: 0 0 0 2px #1DA3F6;
+      box-shadow: 0 0 0 2px $color-primary;
       outline: 0;
     }
     &:hover {

@@ -12,13 +12,17 @@
     font-size: 22px;
   }
   &__made-by-link {
+    margin-left: -3px;
     color: #1DA3F6;
     text-decoration: none;
-    padding: 1px;
+    padding: 6px;
     border-radius: 3px;
     &:focus {
       box-shadow: 0 0 0 2px #1DA3F6;
       outline: 0;
+    }
+    &:hover {
+      text-decoration: underline;
     }
   }
 }

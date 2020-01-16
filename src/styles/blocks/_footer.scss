@@ -3,13 +3,21 @@
   bottom: 0;
   width: 100%;
   &__inner {
-    padding: 32px;
+    padding-top: 32px;
+    padding-bottom: 32px;
     @include container;
     display: flex;
     justify-content: center;
+    @media (max-width: 768px) {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
   }
   &__made-by {
     font-size: 22px;
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
   }
   &__made-by-link {
     margin-left: -3px;

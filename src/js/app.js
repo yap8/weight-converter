@@ -24,14 +24,12 @@ const shortenValues = (result) => {
 const validateInput = (input) => {
   if (input === 0) {
     formInput.classList.remove('form__input--message--danger')
-    items.classList.add('items--hidden')
+    return false
   } else if (isNaN(input)) {
     formInput.classList.add('form__input--message--danger')
-    items.classList.add('items--hidden')
-  } else {
-    formInput.classList.remove('form__input--message--danger')
-    items.classList.remove('items--hidden')
+    return false
   }
+  return true
 }
 
 const getResult = (option, input) => {
@@ -58,23 +56,29 @@ const getResult = (option, input) => {
 }
 
 const renderResult = (result) => {
-  Array.from(items.children).forEach((item, i) => {
-    const itemTitle = item.querySelector('.items__item-title')
-    const itemResult = item.querySelector('.items__item-result')
+  items.innerHTML = ''
 
-    itemTitle.textContent = result[i].title + ':'
-    itemResult.value = result[i].value
+  result.forEach(item => {
+    items.insertAdjacentHTML('beforeend', `
+      <li class="items__item">
+        <h4 class="items__item-title">${item.title}:</h4>
+        <input type="text" class="items__item-result" value="${item.value}" readonly>
+      </li>
+    `)
   })
 }
 
 const handleInput = () => {
   const option = formOption.value
   const input = +formInput.value !== 0 ? getKilos(option, +formInput.value) : 0
-  const result = getResult(option, input)
-
-  validateInput(input)
-  shortenValues(result)
-  renderResult(result)
+  
+  if (validateInput(input)) {
+    const result = getResult(option, input)
+    shortenValues(result)
+    renderResult(result)
+  } else {
+    renderResult([])
+  }
 }
 
 form.addEventListener('submit', (e) => e.preventDefault()) 

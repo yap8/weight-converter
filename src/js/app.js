@@ -45,16 +45,6 @@ const getResult = (option, input) => {
   }
 }
 
-const handleInput = () => {
-  const option = formOption.value
-  const input = +formInput.value || 0
-  const result = getResult(option, input)
-
-  toggleDisplayItems(input)
-  shortenValues(result)
-  outputResult(result)
-}
-
 const outputResult = (result) => {
   Array.from(items.children).forEach((item, i) => {
     const itemTitle = item.querySelector('.items__item-title')
@@ -65,8 +55,16 @@ const outputResult = (result) => {
   })
 }
 
+const handleInput = () => {
+  const option = formOption.value
+  const input = +formInput.value || 0
+  const result = getResult(option, input)
+
+  toggleDisplayItems(input)
+  shortenValues(result)
+  outputResult(result)
+}
+
 form.addEventListener('submit', (e) => e.preventDefault()) 
 formInput.addEventListener('input', handleInput)
 formOption.addEventListener('change', handleInput)
-
-handleInput()

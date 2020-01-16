@@ -4,6 +4,16 @@ const formInput = document.querySelector('#input')
 
 const items = document.querySelector('#items')
 
+const getKilos = (option, input) => {
+  if (option === 'kg') {
+    return input
+  } else if (option === 'lbs') {
+    return input * 0.45
+  } else if (option === 'st') {
+    return input * 6.35
+  }
+}
+
 const shortenValues = (result) => {
   result.forEach(item => {
     if (item.value % 1 !== 0) {
@@ -28,7 +38,6 @@ const getResult = (option, input) => {
     ]
   } else if (option === 'lbs') {
     formInput.placeholder = 'Enter pounds...'
-    input *= 0.45
     
     return [
       { title: 'Kilograms', value: input },
@@ -36,7 +45,6 @@ const getResult = (option, input) => {
     ]
   } else if (option === 'st') {
     formInput.placeholder = 'Enter stones...'
-    input *= 6.35
     
     return [
       { title: 'Kilograms', value: input },
@@ -57,7 +65,7 @@ const outputResult = (result) => {
 
 const handleInput = () => {
   const option = formOption.value
-  const input = +formInput.value || 0
+  const input = +formInput.value !== 0 ? getKilos(option, +formInput.value) : 0
   const result = getResult(option, input)
 
   toggleDisplayItems(input)

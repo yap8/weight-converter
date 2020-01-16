@@ -21,11 +21,16 @@ const shortenValues = (result) => {
   })
 }
 
-const toggleDisplayItems = (input) => {
-  if (input !== 0 && !isNaN(input)) {
-    items.classList.remove('items--hidden')
-  } else {
+const validateInput = (input) => {
+  if (input === 0) {
+    formInput.classList.remove('form__input--message--danger')
     items.classList.add('items--hidden')
+  } else if (isNaN(input)) {
+    formInput.classList.add('form__input--message--danger')
+    items.classList.add('items--hidden')
+  } else {
+    formInput.classList.remove('form__input--message--danger')
+    items.classList.remove('items--hidden')
   }
 }
 
@@ -67,7 +72,7 @@ const handleInput = () => {
   const input = +formInput.value !== 0 ? getKilos(option, +formInput.value) : 0
   const result = getResult(option, input)
 
-  toggleDisplayItems(input)
+  validateInput(input)
   shortenValues(result)
   renderResult(result)
 }

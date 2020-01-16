@@ -4,49 +4,64 @@ const formInput = document.querySelector('#input')
 
 const items = document.querySelector('#items')
 
+const multipliers = {
+  poundsToKilos: 0.453592,
+  stonesToKilos: 6.35029,
+  kilosToPounds: 2.20462,
+  kilosToStones: 0.157472857135078
+}
+
 const handleInput = () => {
   const option = formOption.value
-  const input = formInput.value || 0
+  let input = formInput.value || 0
+  const result = []
 
-  let result = []
-
-  if (option === 'lbs') {
+  if (option === 'kg') {
+    result.push(
+      {
+        title: 'Pounds',
+        value: input * 2.2
+      },
+      {
+        title: 'Stones',
+        value: input * 0.16
+      },
+    )
+  } else if (option === 'lbs') {
     formInput.placeholder = 'Enter pounds...'
-    result = [
+    input *= 0.45
+    
+    result.push(
       {
         title: 'Kilograms',
-        value: input * 0.453592551437
+        value: input
       },
       {
-        title: 'Stone',
-        value: input * 0.0714286
-      }
-    ]
-  } else if (option === 'kg') {
-    formInput.placeholder = 'Enter kilograms...'
-    result = [
-      {
-        title: 'Pounds',
-        value: input * 2.20462
+        title: 'Stones',
+        value: input * 0.16
       },
-      {
-        title: 'Stone',
-        value: input * 0.157473
-      }
-    ]
+    )
   } else if (option === 'st') {
-    formInput.placeholder = 'Enter stone...'
-    result = [
-      {
-        title: 'Pounds',
-        value: input * 14
-      },
+    formInput.placeholder = 'Enter stones...'
+    input *= 6.35
+    
+    result.push(
       {
         title: 'Kilograms',
-        value: input * 6.35029
-      }
-    ]
+        value: input
+      },
+      {
+        title: 'Pounds',
+        value: input * 2.2
+      },
+    )
   }
+
+  result.forEach(item => {
+    if (item.value % 1 !== 0) {
+      item.value = item.value.toFixed(2)
+    }
+  })
 
   outputResult(result)
 }

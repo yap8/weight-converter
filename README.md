@@ -8,8 +8,8 @@ Prototype
 * ~~Remove bootstrap and add custom styles~~
 * ~~Transition from gulp to webpack~~
 * ~~Add footer~~
-* Add validation
-* Add conditional rendering
+* ~~Add validation~~
+* ~~Add conditional rendering~~
 * Add more units
 * Implement .js patterns
 * Improve .js logic

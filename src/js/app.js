@@ -31,6 +31,7 @@ const validateInput = (input) => {
     formInput.classList.add('form__input--message--danger')
     return false
   }
+  formInput.classList.remove('form__input--message--danger')
   return true
 }
 

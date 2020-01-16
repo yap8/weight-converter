@@ -13,8 +13,14 @@ const multipliers = {
 
 const handleInput = () => {
   const option = formOption.value
-  let input = formInput.value || 0
+  let input = +formInput.value || 0
   const result = []
+
+  if (input !== 0) {
+    items.classList.remove('items--hidden')
+  } else {
+    items.classList.add('items--hidden')
+  }
 
   if (option === 'kg') {
     result.push(

@@ -1,6 +1,9 @@
 .items {
   display: flex;
   justify-content: space-between;
+  &--hidden {
+    display: none;
+  }
   @media (max-width: 768px) {
     flex-wrap: wrap;
   }

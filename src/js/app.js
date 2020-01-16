@@ -4,13 +4,6 @@ const formInput = document.querySelector('#input')
 
 const items = document.querySelector('#items')
 
-const multipliers = {
-  poundsToKilos: 0.453592,
-  stonesToKilos: 6.35029,
-  kilosToPounds: 2.20462,
-  kilosToStones: 0.157472857135078
-}
-
 const handleInput = () => {
   const option = formOption.value
   let input = +formInput.value || 0

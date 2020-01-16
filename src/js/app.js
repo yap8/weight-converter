@@ -1,7 +1,6 @@
 const form = document.querySelector('#form')
 const formOption = document.querySelector('#option')
 const formInput = document.querySelector('#input')
-
 const items = document.querySelector('#items')
 
 const getKilos = (option, input) => {
@@ -23,7 +22,7 @@ const shortenValues = (result) => {
 }
 
 const toggleDisplayItems = (input) => {
-  if (input !== 0) {
+  if (input !== 0 && !isNaN(input)) {
     items.classList.remove('items--hidden')
   } else {
     items.classList.add('items--hidden')

@@ -10,6 +10,8 @@ const getKilos = (option, input) => {
     return input * 0.45
   } else if (option === 'st') {
     return input * 6.35
+  } else if (option === 'oz') {
+    return input * 0.0283495
   }
 }
 
@@ -35,18 +37,27 @@ const validateInput = (input) => {
 const getResult = (option, input) => {
   if (option === 'kg') {
     return [
-      { title: 'Pounds', value: input * 2.2 }, 
-      { title: 'Stones', value: input * 0.16 }
+      { title: 'Pounds', value: input * 2.20462 }, 
+      { title: 'Stones', value: input * 0.157473 },
+      { title: 'Ounces', value: input * 35.274 },
     ]
   } else if (option === 'lbs') {
     return [
       { title: 'Kilograms', value: input },
-      { title: 'Stones', value: input * 0.16 }
+      { title: 'Stones', value: input * 0.157473 },
+      { title: 'Ounces', value: input * 35.274 },
     ]
   } else if (option === 'st') {
     return [
       { title: 'Kilograms', value: input },
-      { title: 'Pounds', value: input * 2.2 }
+      { title: 'Pounds', value: input * 2.20462 },
+      { title: 'Ounces', value: input * 35.274 },
+    ]
+  } else if (option === 'oz') {
+    return [
+      { title: 'Kilograms', value: input },
+      { title: 'Pounds', value: input * 2.20462 },
+      { title: 'Stones', value: input * 0.157473 },
     ]
   }
 }
@@ -84,6 +95,8 @@ const handleChange = (e) => {
     formInput.placeholder = 'Enter pounds...'
   } else if (e.target.value === 'st') {
     formInput.placeholder = 'Enter stones...'
+  } else if (e.target.value === 'oz') {
+    formInput.placeholder = 'Enter ounces...'
   }
 
   handleInput()

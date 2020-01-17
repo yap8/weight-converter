@@ -5,11 +5,11 @@ class Model {
 
   constructor() {
     this.titles = {
-      kg: 'kilogram',
-      lb: 'pound',
-      st: 'stone',
-      oz: 'ounce',
-      T: 'tonne'
+      kg: 'Kilogram',
+      lb: 'Pound',
+      st: 'Stone',
+      oz: 'Ounce',
+      T:  'Tonne'
     }
     this.formulaParts = {
       kg: 1,

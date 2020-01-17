@@ -10,12 +10,13 @@ class Controller {
     this.view.on('handleChange', this.handleChange.bind(this))
   }
   handleInput({ unit, weight }): void {
-    weight = +weight !== 0 ? this.getKilos(unit, weight) : 0
-
+    const unitIndex: number = this.model.getUnitIndex(unit)
+    const kilos: number = +weight !== 0 ? this.getKilos(unitIndex, weight) : 0
+    
     let result: any[] = []
 
-    if (this.validateInput(weight)) {
-      result = this.getResult(unit, weight)
+    if (this.validateInput(kilos)) {
+      result = this.getResult(unitIndex, kilos)
       this.shortenValues(result)
     }
 
@@ -32,8 +33,8 @@ class Controller {
       item.weight = item.weight.toFixed(2)
     })
   }
-  getKilos(unit: string, weight: number): number {
-    return weight / this.model.getFormulaPart(unit)
+  getKilos(unitIndex: number, weight: number): number {
+    return weight / this.model.getFormulaPart(unitIndex)
   }
   validateInput(input: number): boolean {
     if (input === 0) {
@@ -46,11 +47,13 @@ class Controller {
     this.view.displayFormInputSuccess()
     return true
   }
-  getResult(unit: string, weight: number): object[] {
-    const resultMask: any[] = this.model.getResultMask()
+  getResult(unitIndex: number, kilos: number): object[] {
+    const allData: any[] = this.model.getAllData()
 
-    const result: object[] = resultMask.filter(item => item.alias !== unit).map(item => (
-      { title: item.title, weight: weight * item.multiplier }
+    const filteredData: any[] = allData.map(item => item.filter(innerItem => item.indexOf(innerItem) !== unitIndex))
+
+    const result: any[] = filteredData[0].map((item, i) => (
+      { title: filteredData[1][i], weight: kilos * filteredData[2][i] }
     ))
 
     return result

@@ -1,33 +1,36 @@
 class Model {
-  titles: object
-  formulaParts: object
-  resultMask: object[]
+  titles: string[]
+  shortTitles: string[]
+  formulaParts: number[]
 
   constructor() {
-    this.titles = {
-      kg: 'Kilogram',
-      lb: 'Pound',
-      st: 'Stone',
-      oz: 'Ounce',
-      T:  'Tonne'
-    }
-    this.formulaParts = {
-      kg: 1,
-      lb: 2.20462,
-      st: .157473,
-      oz: 35.274,
-      T: 0.001
-    }
-    this.resultMask = [
-      { title: this.titles['lb'], alias: 'lb', multiplier: this.formulaParts['lb'] }, 
-      { title: this.titles['kg'], alias: 'kg', multiplier: this.formulaParts['kg'] },
-      { title: this.titles['st'], alias: 'st', multiplier: this.formulaParts['st'] },
-      { title: this.titles['oz'], alias: 'oz', multiplier: this.formulaParts['oz'] },
-      { title: this.titles['T'],  alias: 'T',  multiplier: this.formulaParts['T'] }
+    this.titles = [
+      'Pound',
+      'Kilogram', 
+      'Stone', 
+      'Ounce',
+      'Tonne'
+    ]
+    this.shortTitles = [
+      'lb', 
+      'kg', 
+      'st', 
+      'oz', 
+      'T'
+    ]
+    this.formulaParts = [
+      2.20462,
+      1,
+      .157473,
+      35.274,
+      .001
     ]
   }
-  getResultMask(): object[] {
-    return this.resultMask
+  getAllData(): object[] {
+    return [this.shortTitles, this.titles, this.formulaParts]
+  }
+  getUnitIndex(unit: string): number {
+    return this.shortTitles.indexOf(unit)
   }
   getMessage(unit: string): string {
     return `Enter ${this.titles[unit]}s...`

@@ -1,10 +1,17 @@
 class Model {
+  titles: object
   toKiloMultipliers: object
   fromKiloMultipliers: object
   resultMasks: object
-  messages: object
 
   constructor() {
+    this.titles = {
+      kg: 'kilogram',
+      lb: 'pound',
+      st: 'stone',
+      oz: 'ounce',
+      T: 'tonne'
+    }
     this.toKiloMultipliers = {
       kg: 1,
       lb: .453592,
@@ -21,49 +28,42 @@ class Model {
     }
     this.resultMasks = {
       kg: [
-        { title: 'Pounds',    multiplier: this.fromKiloMultipliers['lb'] }, 
-        { title: 'Stones',    multiplier: this.fromKiloMultipliers['st'] },
-        { title: 'Ounces',    multiplier: this.fromKiloMultipliers['oz'] },
-        { title: 'Tonnes',    multiplier: this.fromKiloMultipliers['T'] },
+        { title: this.titles['lb'], multiplier: this.fromKiloMultipliers['lb'] }, 
+        { title: this.titles['st'], multiplier: this.fromKiloMultipliers['st'] },
+        { title: this.titles['oz'], multiplier: this.fromKiloMultipliers['oz'] },
+        { title: this.titles['T'],  multiplier: this.fromKiloMultipliers['T'] },
       ],
       lb: [
-        { title: 'Kilograms', multiplier: this.fromKiloMultipliers['kg'] },
-        { title: 'Stones',    multiplier: this.fromKiloMultipliers['st'] },
-        { title: 'Ounces',    multiplier: this.fromKiloMultipliers['oz'] },
-        { title: 'Tonnes',    multiplier: this.fromKiloMultipliers['T'] },
+        { title: this.titles['kg'], multiplier: this.fromKiloMultipliers['kg'] },
+        { title: this.titles['st'], multiplier: this.fromKiloMultipliers['st'] },
+        { title: this.titles['oz'], multiplier: this.fromKiloMultipliers['oz'] },
+        { title: this.titles['T'],  multiplier: this.fromKiloMultipliers['T'] },
       ],
       st: [
-        { title: 'Kilograms', multiplier: this.fromKiloMultipliers['kg'] },
-        { title: 'Pounds',    multiplier: this.fromKiloMultipliers['lb'] },
-        { title: 'Ounces',    multiplier: this.fromKiloMultipliers['oz'] },
-        { title: 'Tonnes',    multiplier: this.fromKiloMultipliers['T'] },
+        { title: this.titles['kg'], multiplier: this.fromKiloMultipliers['kg'] },
+        { title: this.titles['lb'], multiplier: this.fromKiloMultipliers['lb'] },
+        { title: this.titles['oz'], multiplier: this.fromKiloMultipliers['oz'] },
+        { title: this.titles['T'],  multiplier: this.fromKiloMultipliers['T'] },
       ],
       oz: [
-        { title: 'Kilograms', multiplier: this.fromKiloMultipliers['kg'] },
-        { title: 'Pounds',    multiplier: this.fromKiloMultipliers['lb'] },
-        { title: 'Stones',    multiplier: this.fromKiloMultipliers['st'] },
-        { title: 'Tonnes',    multiplier: this.fromKiloMultipliers['T'] },
+        { title: this.titles['kg'], multiplier: this.fromKiloMultipliers['kg'] },
+        { title: this.titles['lb'], multiplier: this.fromKiloMultipliers['lb'] },
+        { title: this.titles['st'], multiplier: this.fromKiloMultipliers['st'] },
+        { title: this.titles['T'],  multiplier: this.fromKiloMultipliers['T'] },
       ],
       T: [
-        { title: 'Kilograms', multiplier: this.fromKiloMultipliers['kg'] },
-        { title: 'Pounds',    multiplier: this.fromKiloMultipliers['lb'] },
-        { title: 'Stones',    multiplier: this.fromKiloMultipliers['st'] },
-        { title: 'Ounces',    multiplier: this.fromKiloMultipliers['oz'] },
+        { title: this.titles['kg'], multiplier: this.fromKiloMultipliers['kg'] },
+        { title: this.titles['lb'], multiplier: this.fromKiloMultipliers['lb'] },
+        { title: this.titles['st'], multiplier: this.fromKiloMultipliers['st'] },
+        { title: this.titles['oz'], multiplier: this.fromKiloMultipliers['oz'] },
       ]
-    }
-    this.messages = {
-      kg: 'Enter kilograms...',
-      lb: 'Enter pounds...',
-      st: 'Enter stones...',
-      oz: 'Enter ounces...',
-      T: 'Enter tonnes...'
     }
   }
   getResultMask(unit: string): object[] {
     return this.resultMasks[unit]
   }
   getMessage(unit: string): string {
-    return this.messages[unit]
+    return `Enter ${this.titles[unit]}s...`
   }
   getToKiloMultiplier(unit: string): number {
     return this.toKiloMultipliers[unit]

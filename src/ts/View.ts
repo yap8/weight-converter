@@ -1,6 +1,6 @@
 import EventEmitter from './EventEmitter'
 
-export default class View extends EventEmitter {
+class View extends EventEmitter {
   form: HTMLElement
   formOption: HTMLInputElement
   formInput: HTMLInputElement
@@ -48,3 +48,5 @@ export default class View extends EventEmitter {
     this.formInput.classList.add('form__input--message--danger')
   }
 }
+
+export default View

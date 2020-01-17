@@ -33,7 +33,7 @@ export default class Controller {
     })
   }
   getKilos(unit: string, weight: number): number {
-    return this.model.getToKiloMultiplier(unit) * weight
+    return weight / this.model.getFormulaPart(unit)
   }
   validateInput(input: number): boolean {
     if (input === 0) {

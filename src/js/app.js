@@ -1,108 +1,143 @@
-const form = document.querySelector('#form')
-const formOption = document.querySelector('#option')
-const formInput = document.querySelector('#input')
-const items = document.querySelector('#items')
-
-const getKilos = (option, input) => {
-  if (option === 'kg') {
-    return input
-  } else if (option === 'lbs') {
-    return input * .45
-  } else if (option === 'st') {
-    return input * 6.35
-  } else if (option === 'oz') {
-    return input * .0283495
-  }
-}
-
-const shortenValues = (result) => {
-  result.forEach(item => {
-    if (item.value % 1 !== 0) {
-      item.value = item.value.toFixed(2)
+class Model {
+  constructor() {
+    this.toKiloMultipliers = {
+      kg: 1,
+      lb: .453592,
+      st: 6.35029,
+      oz: .0283495
     }
-  })
-}
-
-const validateInput = (input) => {
-  if (input === 0) {
-    formInput.classList.remove('form__input--message--danger')
-    return false
-  } else if (isNaN(input)) {
-    formInput.classList.add('form__input--message--danger')
-    return false
+    this.fromKiloMultipliers = {
+      kg: 1,
+      lb: 2.20462,
+      st: .157473,
+      oz: 35.274
+    }
+    this.resultMasks = {
+      kg: [
+        { title: 'Pounds',    multiplier: this.fromKiloMultipliers['lb'] }, 
+        { title: 'Stones',    multiplier: this.fromKiloMultipliers['st'] },
+        { title: 'Ounces',    multiplier: this.fromKiloMultipliers['oz'] },
+      ],
+      lb: [
+        { title: 'Kilograms', multiplier: this.fromKiloMultipliers['kg'] },
+        { title: 'Stones',    multiplier: this.fromKiloMultipliers['st'] },
+        { title: 'Ounces',    multiplier: this.fromKiloMultipliers['oz'] },
+      ],
+      st: [
+        { title: 'Kilograms', multiplier: this.fromKiloMultipliers['kg'] },
+        { title: 'Pounds',    multiplier: this.fromKiloMultipliers['lb'] },
+        { title: 'Ounces',    multiplier: this.fromKiloMultipliers['oz'] },
+      ],
+      oz: [
+        { title: 'Kilograms', multiplier: this.fromKiloMultipliers['kg'] },
+        { title: 'Pounds',    multiplier: this.fromKiloMultipliers['lb'] },
+        { title: 'Stones',    multiplier: this.fromKiloMultipliers['st'] },
+      ]
+    }
+    this.messages = {
+      kg: 'Enter kilograms...',
+      lb: 'Enter pounds...',
+      st: 'Enter stones...',
+      oz: 'Enter ounces...'
+    }
   }
-  formInput.classList.remove('form__input--message--danger')
-  return true
-}
-
-const getResult = (option, input) => {
-  if (option === 'kg') {
-    return [
-      { title: 'Pounds', value: input * 2.20462 }, 
-      { title: 'Stones', value: input * .157473 },
-      { title: 'Ounces', value: input * 35.274 },
-    ]
-  } else if (option === 'lbs') {
-    return [
-      { title: 'Kilograms', value: input },
-      { title: 'Stones', value: input * .157473 },
-      { title: 'Ounces', value: input * 35.274 },
-    ]
-  } else if (option === 'st') {
-    return [
-      { title: 'Kilograms', value: input },
-      { title: 'Pounds', value: input * 2.20462 },
-      { title: 'Ounces', value: input * 35.274 },
-    ]
-  } else if (option === 'oz') {
-    return [
-      { title: 'Kilograms', value: input },
-      { title: 'Pounds', value: input * 2.20462 },
-      { title: 'Stones', value: input * .157473 },
-    ]
+  getResultMask(unit) {
+    return this.resultMasks[unit]
   }
-}
-
-const renderResult = (result) => {
-  items.innerHTML = ''
-
-  result.forEach(item => {
-    items.insertAdjacentHTML('beforeend', `
-      <li class="items__item">
-        <h4 class="items__item-title">${item.title}:</h4>
-        <input type="text" class="items__item-result" value="${item.value}" readonly>
-      </li>
-    `)
-  })
-}
-
-const handleInput = () => {
-  const option = formOption.value
-  const input = +formInput.value !== 0 ? getKilos(option, +formInput.value) : 0
-  
-  if (validateInput(input)) {
-    const result = getResult(option, input)
-    shortenValues(result)
-    renderResult(result)
-  } else {
-    renderResult([])
+  getMessage(unit) {
+    return this.messages[unit]
+  }
+  getToKiloMultiplier(unit) {
+    return this.toKiloMultipliers[unit]
   }
 }
 
-const handleChange = (e) => {
-  if (e.target.value === 'kg') {
-    formInput.placeholder = 'Enter kilograms...'
-  } else if (e.target.value === 'lbs') {
-    formInput.placeholder = 'Enter pounds...'
-  } else if (e.target.value === 'st') {
-    formInput.placeholder = 'Enter stones...'
-  } else if (e.target.value === 'oz') {
-    formInput.placeholder = 'Enter ounces...'
-  }
+class View {
+  constructor() {
+    this.form = document.querySelector('#form')
+    this.formOption = document.querySelector('#option')
+    this.formInput = document.querySelector('#input')
+    this.items = document.querySelector('#items')
 
-  handleInput()
+    this.form.addEventListener('submit', (e) => e.preventDefault()) 
+    this.formInput.addEventListener('input', (e) => {
+      controller.handleInput(this.formOption.value, this.formInput.value)
+    })
+    this.formOption.addEventListener('change', (e) => {
+      controller.handleChange(this.formOption.value, this.formInput.value)
+    })
+  }
+  renderResult(result) {
+    this.items.innerHTML = ''
+
+    result.forEach(item => {
+      this.items.insertAdjacentHTML('beforeend', `
+        <li class="items__item">
+          <h4 class="items__item-title">${item.title}:</h4>
+          <input type="text" class="items__item-result" value="${item.weight}" readonly>
+        </li>
+      `)
+    })
+  }
+  changeFormInputPlaceholder(message) {
+    this.formInput.placeholder = message
+  }
+  displayFormInputSuccess() {
+    this.formInput.classList.remove('form__input--message--danger')
+  }
+  displayFormInputError() {
+    this.formInput.classList.add('form__input--message--danger')
+  }
 }
 
-form.addEventListener('submit', (e) => e.preventDefault()) 
-formInput.addEventListener('input', handleInput)
-formOption.addEventListener('change', handleChange)
+class Controller {
+  handleInput(unit, weight) {
+    weight = +weight !== 0 ? this.getKilos(unit, weight) : 0
+
+    let result = []
+
+    if (this.validateInput(weight)) {
+      result = this.getResult(unit, weight)
+      this.shortenValues(result)
+    }
+
+    view.renderResult(result)
+  }
+  handleChange(unit, weight) {
+    const message = model.getMessage(unit)
+
+    view.changeFormInputPlaceholder(message)
+    this.handleInput(unit, weight)
+  }
+  shortenValues(result) {
+    result.forEach(item => {
+      item.weight = item.weight.toFixed(2)
+    })
+  }
+  getKilos(unit, weight) {
+
+    return model.getToKiloMultiplier(unit) * weight
+  }
+  validateInput(input) {
+    if (input === 0) {
+      view.displayFormInputSuccess()
+      return false
+    } else if (isNaN(input)) {
+      view.displayFormInputError()
+      return false
+    }
+    view.displayFormInputSuccess()
+    return true
+  }
+  getResult(unit, weight) {
+    const resultMask = model.getResultMask(unit)
+
+    return resultMask.map(item => (
+      { title: item.title, weight: weight * item.multiplier }
+    ))
+  }
+}
+
+const model = new Model()
+const view = new View()
+const controller = new Controller()

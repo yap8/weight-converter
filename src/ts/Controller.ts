@@ -47,11 +47,13 @@ class Controller {
     return true
   }
   getResult(unit: string, weight: number): object[] {
-    const resultMask: any[] = this.model.getResultMask(unit)
+    const resultMask: any[] = this.model.getResultMask()
 
-    return resultMask.map(item => (
+    const result: object[] = resultMask.filter(item => item.alias !== unit).map(item => (
       { title: item.title, weight: weight * item.multiplier }
     ))
+
+    return result
   }
 }
 

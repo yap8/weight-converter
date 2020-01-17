@@ -1,7 +1,7 @@
 class Model {
   titles: object
   formulaParts: object
-  resultMasks: object
+  resultMask: object[]
 
   constructor() {
     this.titles = {
@@ -18,41 +18,16 @@ class Model {
       oz: 35.274,
       T: 0.001
     }
-    this.resultMasks = {
-      kg: [
-        { title: this.titles['lb'], multiplier: this.formulaParts['lb'] }, 
-        { title: this.titles['st'], multiplier: this.formulaParts['st'] },
-        { title: this.titles['oz'], multiplier: this.formulaParts['oz'] },
-        { title: this.titles['T'],  multiplier: this.formulaParts['T'] },
-      ],
-      lb: [
-        { title: this.titles['kg'], multiplier: this.formulaParts['kg'] },
-        { title: this.titles['st'], multiplier: this.formulaParts['st'] },
-        { title: this.titles['oz'], multiplier: this.formulaParts['oz'] },
-        { title: this.titles['T'],  multiplier: this.formulaParts['T'] },
-      ],
-      st: [
-        { title: this.titles['kg'], multiplier: this.formulaParts['kg'] },
-        { title: this.titles['lb'], multiplier: this.formulaParts['lb'] },
-        { title: this.titles['oz'], multiplier: this.formulaParts['oz'] },
-        { title: this.titles['T'],  multiplier: this.formulaParts['T'] },
-      ],
-      oz: [
-        { title: this.titles['kg'], multiplier: this.formulaParts['kg'] },
-        { title: this.titles['lb'], multiplier: this.formulaParts['lb'] },
-        { title: this.titles['st'], multiplier: this.formulaParts['st'] },
-        { title: this.titles['T'],  multiplier: this.formulaParts['T'] },
-      ],
-      T: [
-        { title: this.titles['kg'], multiplier: this.formulaParts['kg'] },
-        { title: this.titles['lb'], multiplier: this.formulaParts['lb'] },
-        { title: this.titles['st'], multiplier: this.formulaParts['st'] },
-        { title: this.titles['oz'], multiplier: this.formulaParts['oz'] },
-      ]
-    }
+    this.resultMask = [
+      { title: this.titles['lb'], alias: 'lb', multiplier: this.formulaParts['lb'] }, 
+      { title: this.titles['kg'], alias: 'kg', multiplier: this.formulaParts['kg'] },
+      { title: this.titles['st'], alias: 'st', multiplier: this.formulaParts['st'] },
+      { title: this.titles['oz'], alias: 'oz', multiplier: this.formulaParts['oz'] },
+      { title: this.titles['T'],  alias: 'T',  multiplier: this.formulaParts['T'] }
+    ]
   }
-  getResultMask(unit: string): object[] {
-    return this.resultMasks[unit]
+  getResultMask(): object[] {
+    return this.resultMask
   }
   getMessage(unit: string): string {
     return `Enter ${this.titles[unit]}s...`

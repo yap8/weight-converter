@@ -17,3 +17,4 @@ Prototype
 * ~~Re-write everything using typescript~~
 * Come up with better design
 * ~~Update html select options based on change in Model~~
+* Deploy project

@@ -26,6 +26,9 @@ const optimization = () => {
 }
 
 module.exports = {
+  resolve: {
+    extensions: ['.ts', '.js' ],
+  },
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
   entry: {

@@ -1,4 +1,9 @@
 class Model {
+  toKiloMultipliers: object
+  fromKiloMultipliers: object
+  resultMasks: object
+  messages: object
+
   constructor() {
     this.toKiloMultipliers = {
       kg: 1,
@@ -41,13 +46,13 @@ class Model {
       oz: 'Enter ounces...'
     }
   }
-  getResultMask(unit) {
+  getResultMask(unit: string): object[] {
     return this.resultMasks[unit]
   }
-  getMessage(unit) {
+  getMessage(unit: string): string {
     return this.messages[unit]
   }
-  getToKiloMultiplier(unit) {
+  getToKiloMultiplier(unit: string): number {
     return this.toKiloMultipliers[unit]
   }
 }

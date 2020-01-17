@@ -1,6 +1,11 @@
 import EventEmitter from './EventEmitter'
 
-class View extends EventEmitter {
+export default class View extends EventEmitter {
+  form: HTMLElement
+  formOption: HTMLInputElement
+  formInput: HTMLInputElement
+  items: HTMLElement
+
   constructor() {
     super()
 
@@ -9,19 +14,19 @@ class View extends EventEmitter {
     this.formInput = document.querySelector('#input')
     this.items = document.querySelector('#items')
 
-    this.form.addEventListener('submit', (e) => e.preventDefault()) 
+    this.form.addEventListener('submit', (e) => e.preventDefault())
     this.formInput.addEventListener('input', (e) => {
-      const unit = this.formOption.value
-      const weight = this.formInput.value
+      const unit: string = this.formOption.value
+      const weight: string = this.formInput.value
       this.emit('handleInput', { unit, weight })
     })
     this.formOption.addEventListener('change', (e) => {
-      const unit = this.formOption.value
-      const weight = this.formInput.value
+      const unit: string = this.formOption.value
+      const weight: string = this.formInput.value
       this.emit('handleChange', { unit, weight })
     })
   }
-  renderResult(result) {
+  renderResult(result: any[]): void {
     this.items.innerHTML = ''
 
     result.forEach(item => {
@@ -33,15 +38,13 @@ class View extends EventEmitter {
       `)
     })
   }
-  changeFormInputPlaceholder(message) {
+  changeFormInputPlaceholder(message: string): void {
     this.formInput.placeholder = message
   }
-  displayFormInputSuccess() {
+  displayFormInputSuccess(): void {
     this.formInput.classList.remove('form__input--message--danger')
   }
-  displayFormInputError() {
+  displayFormInputError(): void {
     this.formInput.classList.add('form__input--message--danger')
   }
 }
-
-export default View

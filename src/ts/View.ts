@@ -41,11 +41,12 @@ class View extends EventEmitter {
   changeFormInputPlaceholder(message: string): void {
     this.formInput.placeholder = message
   }
-  displayFormInputSuccess(): void {
-    this.formInput.classList.remove('form__input--message--danger')
-  }
-  displayFormInputError(): void {
-    this.formInput.classList.add('form__input--message--danger')
+  formInputDisplay(message: string): void {
+    if (message === 'success') {
+      this.formInput.classList.remove('form__input--message--danger')
+    } else if (message === 'error') {
+      this.formInput.classList.add('form__input--message--danger')
+    }
   }
 }
 

@@ -37,15 +37,18 @@ class Controller {
     return weight / this.model.getFormulaPart(unitIndex)
   }
   validateInput(input: number): boolean {
+    let message = 'success'
+    let result = true
+
     if (input === 0) {
-      this.view.displayFormInputSuccess()
-      return false
+      result = false
     } else if (isNaN(input)) {
-      this.view.displayFormInputError()
-      return false
+      message = 'error'
+      result = false
     }
-    this.view.displayFormInputSuccess()
-    return true
+
+    this.view.formInputDisplay(message)
+    return result
   }
   getResult(unitIndex: number, kilos: number): object[] {
     const allData: any[] = this.model.getAllData()

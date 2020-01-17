@@ -26,6 +26,9 @@ class Model {
       .001
     ]
   }
+  getShortTitles(): string[] {
+    return this.shortTitles
+  }
   getAllData(): object[] {
     return [this.shortTitles, this.titles, this.formulaParts]
   }

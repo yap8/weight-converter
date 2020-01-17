@@ -9,21 +9,37 @@ class View extends EventEmitter {
   constructor() {
     super()
 
+    // Elements
     this.form = document.querySelector('#form')
     this.formOption = document.querySelector('#option')
     this.formInput = document.querySelector('#input')
     this.items = document.querySelector('#items')
 
+    // Listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      this.emit('handleLoaded', {})
+    })
+
     this.form.addEventListener('submit', (e) => e.preventDefault())
+
     this.formInput.addEventListener('input', (e) => {
       const unit: string = this.formOption.value
       const weight: string = this.formInput.value
       this.emit('handleInput', { unit, weight })
     })
+
     this.formOption.addEventListener('change', (e) => {
       const unit: string = this.formOption.value
       const weight: string = this.formInput.value
       this.emit('handleChange', { unit, weight })
+    })
+
+  }
+  renderOptions(options: string[]): void {
+    options.forEach(option => {
+      this.formOption.insertAdjacentHTML('beforeend', `
+        <option value="${option}">${option}</option>
+      `)
     })
   }
   renderResult(result: any[]): void {

@@ -8,6 +8,11 @@ class Controller {
 
     this.view.on('handleInput', this.handleInput.bind(this))
     this.view.on('handleChange', this.handleChange.bind(this))
+    this.view.on('handleLoaded', this.handleLoaded.bind(this))
+  }
+  handleLoaded(): void {
+    const options = this.model.getShortTitles()
+    this.view.renderOptions(options)
   }
   handleInput({ unit, weight }): void {
     const unitIndex: number = this.model.getUnitIndex(unit)

@@ -32,11 +32,11 @@ class Model {
   getUnitIndex(unit: string): number {
     return this.shortTitles.indexOf(unit)
   }
-  getMessage(unit: string): string {
-    return `Enter ${this.titles[unit]}s...`
+  getMessage(unitIndex: number): string {
+    return `Enter ${this.titles[unitIndex]}s...`
   }
-  getFormulaPart(unit: string): number {
-    return this.formulaParts[unit]
+  getFormulaPart(unitIndex: number): number {
+    return this.formulaParts[unitIndex]
   }
 }
 

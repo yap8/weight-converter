@@ -23,7 +23,8 @@ class Controller {
     this.view.renderResult(result)
   }
   handleChange({ unit, weight }): void {
-    const message = this.model.getMessage(unit)
+    const unitIndex = this.model.getUnitIndex(unit)
+    const message = this.model.getMessage(unitIndex)
 
     this.view.changeFormInputPlaceholder(message)
     this.handleInput({ unit, weight })

@@ -1,8 +1,5 @@
 # Weight Converter
 
-## Stage
-Prototype
-
 ## Todo 
 * ~~Improve file structure~~
 * ~~Remove bootstrap and add custom styles~~
@@ -14,4 +11,4 @@ Prototype
 * ~~Improve .js logic~~
 * ~~Split .js files into modules~~
 * ~~Update html select options based on change in Model~~
-* Deploy project
+* ~~Deploy project~~

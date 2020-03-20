@@ -1,11 +1,6 @@
 import EventEmitter from './EventEmitter'
 
 class View extends EventEmitter {
-  form: HTMLElement
-  formOption: HTMLInputElement
-  formInput: HTMLInputElement
-  items: HTMLElement
-
   constructor() {
     super()
 
@@ -23,26 +18,26 @@ class View extends EventEmitter {
     this.form.addEventListener('submit', (e) => e.preventDefault())
 
     this.formInput.addEventListener('input', (e) => {
-      const unit: string = this.formOption.value
-      const weight: string = this.formInput.value
+      const unit = this.formOption.value
+      const weight = this.formInput.value
       this.emit('handleInput', { unit, weight })
     })
 
     this.formOption.addEventListener('change', (e) => {
-      const unit: string = this.formOption.value
-      const weight: string = this.formInput.value
+      const unit = this.formOption.value
+      const weight = this.formInput.value
       this.emit('handleChange', { unit, weight })
     })
 
   }
-  renderOptions(options: string[]): void {
+  renderOptions(options) {
     options.forEach(option => {
       this.formOption.insertAdjacentHTML('beforeend', `
         <option value="${option}">${option}</option>
       `)
     })
   }
-  renderResult(result: any[]): void {
+  renderResult(result) {
     this.items.innerHTML = ''
 
     result.forEach(item => {
@@ -54,10 +49,10 @@ class View extends EventEmitter {
       `)
     })
   }
-  changeFormInputPlaceholder(message: string): void {
+  changeFormInputPlaceholder(message) {
     this.formInput.placeholder = message
   }
-  formInputDisplay(message: string): void {
+  formInputDisplay(message) {
     if (message === 'success') {
       this.formInput.classList.remove('form__input--message--danger')
     } else if (message === 'error') {

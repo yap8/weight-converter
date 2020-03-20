@@ -1,8 +1,4 @@
 class Model {
-  titles: string[]
-  shortTitles: string[]
-  formulaParts: number[]
-
   constructor() {
     this.titles = [
       'Pound',
@@ -26,19 +22,19 @@ class Model {
       .001
     ]
   }
-  getShortTitles(): string[] {
+  getShortTitles() {
     return this.shortTitles
   }
-  getAllData(): object[] {
+  getAllData() {
     return [this.shortTitles, this.titles, this.formulaParts]
   }
-  getUnitIndex(unit: string): number {
+  getUnitIndex(unit) {
     return this.shortTitles.indexOf(unit)
   }
-  getMessage(unitIndex: number): string {
+  getMessage(unitIndex) {
     return `Enter ${this.titles[unitIndex]}s...`
   }
-  getFormulaPart(unitIndex: number): number {
+  getFormulaPart(unitIndex) {
     return this.formulaParts[unitIndex]
   }
 }

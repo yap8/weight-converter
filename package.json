@@ -13,7 +13,7 @@
   "browserslist": "> 0.25%, not dead",
   "keywords": [],
   "author": "Arseny Nebozhenko",
-  "homepage": "https://arsenyNebozhenko.io/weight-converter",
+  "homepage": "https://yap8.github.io/weight-converter",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.17.10",
